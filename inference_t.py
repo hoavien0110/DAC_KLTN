@@ -3,6 +3,7 @@ import torch
 from PIL import Image
 import argparse
 import os
+import random
 
 def parse_args(input_args=None):
     parser = argparse.ArgumentParser(description="Inference.")
@@ -23,7 +24,8 @@ def parse_args(input_args=None):
 if __name__ == "__main__":
     args = parse_args()
 
-    generator = torch.Generator("cuda").manual_seed(29)
+    # generator = torch.Generator("cuda").manual_seed(29)
+    generator = torch.Generator("cuda").manual_seed(random.randint(0, 1000))
     guidance_scale = 4
     num_inference_steps = 30
     annealing = args.annealing
